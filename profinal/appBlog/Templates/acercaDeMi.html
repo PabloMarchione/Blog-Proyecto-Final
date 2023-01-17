@@ -1,0 +1,23 @@
+{% extends "..\Templates\master.html" %}
+
+{% load static %}
+
+{% block tituloLeft %}
+<a class="navbar-brand" href="{% url 'index' %}" title="Home">Volver a la portada</a>
+{% endblock %}
+
+{% block contenido %}
+<section class="py-5">
+    <div style="background-image: url('https://images.unsplash.com/photo-1553095066-5014bc7b7f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80');
+background-size: cover; height:480px; padding-top: 80px; text-align: center;">
+    <img src="{% static 'appBlog/assets/yo.jpg' %}" style="height:150px; border-radius: 50%; border: 5px solid #F4FA58;">
+    <h1 style="font-size:30px; color:white; margin:10px;">Pablo Marchione</h1>
+    <p style="font-size:30px; color: white;"><em>Tengo 31 años, soy de BOCA💙💛💙, me gusta el metal🤘 y trabajo en una YPF de noche.</em></p>
+    <p style="font-size:30px; color: white;"><em>Este es mi primer acercamiento al mundo de la programacion, espero les haya gustado😉</em></p>
+</div>
+</section>
+
+{% endblock %}
+{% block algomas %}
+<br></br>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "..\Templates\master.html" %}
+
+{% load static %}
+
+{% block tituloLeft %}
+<a class="navbar-brand" href="{% url 'index' %}" title="Home">Volver a la portada</a>
+{% endblock %}
+
+{% block contenido %}
+
+
+<div class="container px-5 py-5">
+    {% if avatarsin == "../media/avatars/AvatarB.png" %}
+    <img src="{% static avatarsin %}" height="60px"><a class="btn btn-dark"  href="{% url 'agregarAvatar' %}"  title="Cambiar avatar">Cambiar Avatar</a>
+    {% else %}
+    <img src="{{ avatarsin }}" height="60px"><a class="btn btn-dark"  href="{% url 'agregarAvatar' %}"  title="Cambiar avatar">Cambiar Avatar</a>
+    {% endif %}
+    <form action="{% url 'editarUsuario' %}" method="POST"> {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" class="btn btn-dark" value="Guardar cambios" title="aceptar">
+</div>
+
+
+
+{% endblock %}
+
+{% block algomas %}
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+{% endblock %}
+
+
+    

@@ -1,0 +1,29 @@
+{% extends "..\Templates\master.html" %}
+
+{% load static %}
+
+{% block tituloLeft %}
+<a class="navbar-brand" href="{% url 'index' %}" title="Home">Volver a la portada</a>
+{% endblock %}
+
+{% block contenido %}
+<div class="container px-5">
+    {% if avatarsin == "../media/avatars/AvatarB.png" %}
+    <img src="{% static avatarsin %}" alt="Tu avatar" width="100x">
+    {% else %}
+    <img src="{{ avatarsin }}" alt="Tu avatar" width="100x">
+    {% endif %}
+    <form action="{% url 'agregarAvatar' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input class="btn btn-dark" type="submit" value="Agregar este Avatar">
+        
+            
+
+        {{ mensaje }}
+</div>
+{% endblock %}
+
+
+        <img src="{{ avatarsin }}" alt="Tu avatar" width="100x">

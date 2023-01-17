@@ -1,0 +1,27 @@
+{% extends "..\Templates\master.html" %}
+
+{% load static %}
+
+{% block tituloLeft %}
+<a class="navbar-brand" href="{% url 'index' %}" title="Home">Volver a la portada</a>
+{% endblock %}
+
+{% block contenido %}
+
+{% if posts %}
+<div class="container px-5 py-5">
+    <h3>Listado de Posts</h3>
+    <br></br>
+    {% for post in posts %}
+
+    <li>{{ post.titulo }}   👉<a class="btn btn-info btn-sm" href="{% url 'verPost' post.id %}">Leer</a></li>
+    
+
+    {% endfor %}
+    {% else %}
+    {{ mensaje }}
+    {% endif %}
+</div>
+<center><input class="btn btn-dark" value="Volver a la busqueda" onclick="history.back()"/></center>
+
+{% endblock %}

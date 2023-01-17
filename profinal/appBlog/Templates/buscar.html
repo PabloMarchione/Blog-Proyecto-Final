@@ -1,0 +1,18 @@
+{% extends "..\Templates\master.html" %}
+
+{% load static %}
+
+{% block tituloLeft %}
+<a class="navbar-brand" href="{% url 'index' %}" title="Home">Volver a la portada</a>
+{% endblock %}
+
+{% block contenido %}
+
+<form action="{% url 'resultadoBuscador' %}" method="GET">
+
+    <input type="text" name="titulo" id="titulo" placeholder="Buscar Post">
+    <input type="submit" value="Iniciar busqueda">
+
+</form>
+
+{% endblock %}

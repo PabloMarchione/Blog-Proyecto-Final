@@ -1,0 +1,23 @@
+{% extends "..\Templates\master.html" %}
+
+{% load static %}
+
+{% block tituloLeft %}
+<a class="navbar-brand" href="{% url 'index' %}" title="Home">Volver a la portada</a>
+{% endblock %}
+
+{% block contenido %}
+<section class="py-5">
+    <div style="background-image: url('https://blogs.iadb.org/seguridad-ciudadana/wp-content/uploads/sites/27/2020/06/justicia-1024.jpg');
+background-size: cover; height:480px; padding-top: 80px; text-align: center;">
+<br></br>
+<br></br>
+    <p style="font-size:30px; color: white;">Términos y Condiciones para Sitio Web
+        Estos Términos y Condiciones para Sitio Web pueden ser utilizados por la persona o entidad que es propietaria de un sitio de Internet ("sitio web") para precisar la relación contractual con cada persona que, en calidad de usuaria, visita el sitio web. Este documento cumple los requisitos del Código Civil y Comercial de la Nación y de la Ley nacional N° 25.326 y modificatorias exclusivamente.</p>
+</div>
+</section>
+
+{% endblock %}
+{% block algomas %}
+<br></br>
+{% endblock %}

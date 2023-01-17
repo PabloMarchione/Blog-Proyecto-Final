@@ -1,0 +1,22 @@
+{% extends "..\Templates\master.html" %}
+
+{% load static %}
+
+{% block tituloLeft %}
+<a class="navbar-brand" href="{% url 'index' %}" title="Home">Volver a la portada</a>
+{% endblock %}
+
+{% block contenido %}
+
+<section class="py-5">
+    <div class="container px-5">
+        <h1 class="fw-bolder fs-5 mb-4">Login</h1>
+<form action="{% url 'login' %}" method="POST"> {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    
+    <input type="submit" class="btn btn-dark" value="Ingresar" title="Ir">
+</section>
+
+{% endblock %}

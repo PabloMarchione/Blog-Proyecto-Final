@@ -1,0 +1,20 @@
+{% extends "..\Templates\master.html" %}
+
+{% load static %}
+
+{% block tituloLeft %}
+<a class="navbar-brand" href="{% url 'index' %}" title="Home">Volver a la portada</a>
+{% endblock %}
+
+{% block contenido %}
+
+<center><h3>{{ mensaje }}</h3></center>
+<div class="container px-5 py-5">
+    <form action="{% url 'buscar' %}" method="GET">
+        <input type="text" name="titulo" id="titulo" placeholder="Titulo del Post">
+        <input type="submit" value="Iniciar busqueda" class="btn btn-dark">
+    </form>
+    <br></br>
+    <p>Recorda que se pueden <a class="btn btn-dark" href="{% url 'verTodos' %}">Ver todos</a>📰
+</div>
+{% endblock %}

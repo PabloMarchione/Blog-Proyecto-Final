@@ -1,0 +1,45 @@
+{% extends "..\Templates\master.html" %}
+
+{% load static %}
+
+{% block tituloLeft %}
+<a class="navbar-brand" href="{% url 'index' %}" title="Home">Volver a la portada</a>
+{% endblock %}
+
+{% block contenido %}
+
+
+<div class="container px-5 py-5" >
+    
+    {% if avatarsin == "../media/avatars/AvatarB.png" %}
+    <a href="{% url 'verPerfil' %}" title="Perfil"></a><img src="{% static avatarsin %}" height="60px">
+    {% else %}
+    <a href="{% url 'verPerfil' %}" title="Perfil"></a><img src="{{ avatarsin }}" height="60px">
+    {% endif %}
+
+    <form action="{% url 'verPerfil' %}" method="POST"> {% csrf_token %}
+        <li>Nombre: {{ username }}</li>
+        <li>Email: {{ email }}</li>
+        <a class="btn btn-dark btn-sm"  href="{% url 'editarUsuario' %}"  title="Ir">Editar datos de la cuenta</a>
+        {% if sinperfil == True %}
+        <br></br>
+        <li><a class="btn btn-dark btn-sm"  href="{% url 'crearPerfil' %}"  title="Ir">Crear perfil</a>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+        {% else %}
+        <br></br>
+        <h3>Tu perfil</h3>
+        <li>URL: <a href="{{ link }}" target="_blank">Visitar mi link</a></li>
+        <li>Acerca de mi: {{ acercademi }}</li>
+        <a class="btn btn-dark btn-sm"  href="{% url 'editarPerfil' %}"  title="Ir">Modificar perfil</a>
+        <br></br>
+        <div class="col-lg-4 mb-5"><img src="{{ imagen }}" height="200px" width="100%"></div>
+        {% endif %}
+</div>
+{% endblock %}
+
+
+{% block algomas %}
+{% endblock %}

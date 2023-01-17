@@ -1,0 +1,30 @@
+{% extends "..\Templates\master.html" %}
+
+{% load static %}
+
+{% block tituloLeft %}
+<a class="navbar-brand" href="{% url 'index' %}" title="Home">Volver a la portada</a>
+{% endblock %}
+
+{% block contenido %}
+<center><h3>{{ mensaje }}</h3></center>
+<div class="container px-5 py-5">
+    <h3>Leyendo</h3>
+    <form action="{% url 'verMensaje' id=id %}" method="POST"> {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        {% if mensajito.leido == "NO" %}
+        <input type="submit" value="Marcar como leido" class="btn btn-dark">
+        {% else %}
+        <p>✔ Ya lo marcaste como leido</p>
+        {% endif %}
+    </form>
+</div>
+<center><a class="btn btn-dark" href="{% url 'panelMensajes' %}">Volver panel de mensajes</a></center>>
+<center><a class="btn btn-dark" href="{% url 'bandejaEntrada' %}">Volver a bandeja de entrada</a></center>>
+{% endblock %}
+{% block algomas %}
+<br></br>
+<br></br
+{% endblock %}

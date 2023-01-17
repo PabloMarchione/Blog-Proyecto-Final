@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Bloggo!</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'appBlog/assets/icon1.png' %}" >
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="{% static 'appBlog/css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body class="d-flex flex-column">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container px-5">
+                    
+                    {% block tituloLeft %}
+                    
+                    {% endblock %}
+                    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                            
+                            {% if user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'buscarPost' %}" title="buscador">Buscar</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Opciones">Menu</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                    <li><a class="dropdown-item" href="{% url 'crearPost' %}">Crear Post</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'misPosts' %}">Mis Posts</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'verTodos' %}">Todos los Posts</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'panelMensajes' %}">Panel de mensajes</a></li>
+                                </ul>
+                            </li>
+                            {% if avatarsin == "../media/avatars/AvatarB.png" %}
+                            <a href="{% url 'verPerfil' %}" title="Perfil"</a><img src="{% static avatarsin %}" height="40px">
+                            {% else %}
+                            <a href="{% url 'verPerfil' %}" title="Perfil"</a><img src="{{ avatarsin }}" height="40px">
+                            {% endif %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" title="Salir">Logout</a></li>
+                            {% else %}
+                            
+                            <li class="nav-item"><a class="nav-link" href="{% url 'registro' %}" title="Crear nuevo usuario">Registrarse</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}" title="Ingresar">Login</a></li>
+                            {% endif %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'acercaDeMi' %}" title="Info del creador">Acerca de mi</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Page Content-->
+            {% block contenido %}
+
+            {% endblock %}
+            {% block algomas %}
+            {% if rpostin == "" %}
+            <section class="py-5">
+                <div class="container px-5">
+                    <!--<p style="text-align:center;">{{ mensaje }}</p>-->
+                    <h1 class="fw-bolder fs-5 mb-4">Posteo mas reciente</h1>
+                    <div class="card border-0 shadow rounded-3 overflow-hidden">
+                        <div class="card-body p-0">
+                            <div class="row gx-0">
+                                <div class="col-lg-6 col-xl-5 py-lg-5">
+                                    <div class="p-4 p-md-5">
+                                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{ rautor }}</div>
+                                        <div class="h2 fw-bolder">{{ rtitulo }}</div>
+                                        <p>...</p>
+                                        <a class="stretched-link text-decoration-none" href="{% url 'crearPost' %}">
+                                            Crear el primero
+                                            <i class="bi bi-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-xl-7"><div class="bg-featured-blog"><img src="{% static rfoto %}" width="100%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {% else %}
+            <section class="py-5">
+                <div class="container px-5">
+                    <h1 class="fw-bolder fs-5 mb-4">Posteos relevantes</h1>
+                    <div class="card border-0 shadow rounded-3 overflow-hidden">
+                        <div class="card-body p-0">
+                            <div class="row gx-0">
+                                <div class="col-lg-6 col-xl-5 py-lg-5">
+                                    <div class="p-4 p-md-5">
+                                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{ rautor }}</div>
+                                        <div class="h2 fw-bolder">{{ rtitulo }}</div>
+                                        <p>...</p>
+                                        <a class="stretched-link text-decoration-none" href="{% url 'verPost' rpostin %}">
+                                            Leer mas
+                                            <i class="bi bi-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-xl-7"><div class="bg-featured-blog"><img src="{{ rfoto }}" width="100%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {% endif %}
+            {% endblock %}
+        <!-- Footer-->
+        <footer class="bg-dark py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Pablo Marchione {{ fecha }}</div></div>
+                    <div class="col-auto">
+                        <a class="link-light small" href="{% url 'legales' %}">Terminos y condiciones</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="{% url 'acercaDeMi' %}">Acerca de mi</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</main>

@@ -1,0 +1,34 @@
+{% extends "..\Templates\master.html" %}
+
+{% load static %}
+
+{% block tituloLeft %}
+<a class="navbar-brand" href="{% url 'index' %}" title="Home">Volver a la portada</a>
+{% endblock %}
+
+{% block contenido %}
+
+<div class="container px-5 py-5"><center><h3>{{ mensaje }}</h3></center>
+    <h3>Listado de mensajes recibidos</h3>
+    <br></br>
+    {% for mensajito in listado %}
+        <li>De: {{ mensajito.emisor }}-{{ mensajito.fechaEnvio }}-🔎 <a class="btn btn-info btn-sm" href="{% url 'verMensaje' mensajito.id %}">Leer</a>
+        
+        
+        <br></br>
+    {% endfor %}
+
+</div>
+<center><a class="btn btn-dark" href="{% url 'panelMensajes' %}">Volver al menu</a></center>
+{% endblock %}
+
+
+
+
+{% block algomas %}
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+{% endblock %}

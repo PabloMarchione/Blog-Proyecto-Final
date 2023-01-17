@@ -1,0 +1,39 @@
+{% extends "..\Templates\master.html" %}
+
+{% load static %}
+
+{% block tituloLeft %}
+<a class="navbar-brand" href="{% url 'index' %}" title="Home">Volver a la portada</a>
+{% endblock %}
+
+{% block contenido %}
+
+<div class="container px-5 py-5"><center><h3>{{ mensaje }}</h3></center>
+    <h3>Tus mensajes enviados</h3>
+    <br></br>
+    {% for mensajito in listado %}
+        <li>Al usuario {{ mensajito.receptor }}
+        <li>Le escribiste que: {{ mensajito.cuerpo }}
+        <li>Siendo -{{ mensajito.fechaEnvio }}-
+        {% if mensajito.leido == "NO" %}
+        <li>Aun sin leer
+        {% else %}
+        <li>Fue leido ✔
+        {% endif %}
+        <br></br>
+    {% endfor %}
+
+</div>
+<center><a class="btn btn-dark" href="{% url 'panelMensajes' %}">Volver al menu</a></center>
+{% endblock %}
+
+
+
+
+{% block algomas %}
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+{% endblock %}

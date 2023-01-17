@@ -1,0 +1,31 @@
+{% extends "..\Templates\master.html" %}
+
+{% load static %}
+
+{% block tituloLeft %}
+<a class="navbar-brand" href="{% url 'index' %}" title="Home">Volver a la portada</a>
+
+{% endblock %}
+
+{% block contenido %}
+<p class="fw-bolder fs-2 mb-2 py-2" style="text-align:center;">{{ mensaje }}</p>
+
+<div class="container px-5 py-5">
+    <h1 class="fw-bolder fs-5 mb-4">Creando tu perfil</h1>
+    <form action="{% url 'crearPerfil' %}" method="POST" enctype="multipart/form-data" title="Guardar"> {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" class="btn btn-dark" value="Crear">
+</div>
+
+
+
+{% endblock %}
+
+{% block algomas %}
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+{% endblock %}

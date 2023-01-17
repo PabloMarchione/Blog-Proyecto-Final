@@ -1,0 +1,209 @@
+{% extends "..\Templates\master.html" %}
+
+{% load static %}
+
+{% block tituloLeft %}
+<a class="navbar-brand" href="{% url 'index' %}" title="Home">Bloggo!</a>
+{% endblock %}
+
+{% block contenido %}
+{% if titulito == "No hay nada para mostrar" %}
+<section class="py-5">
+    <div class="container px-5">
+        <p style="text-align:center;"><b>{{ mensaje }}</b></p>
+        <h1 class="fw-bolder fs-5 mb-4">Posteo mas reciente</h1>
+        <div class="card border-0 shadow rounded-3 overflow-hidden">
+            <div class="card-body p-0">
+                <div class="row gx-0">
+                    <div class="col-lg-6 col-xl-5 py-lg-5">
+                        <div class="p-4 p-md-5">
+                            <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{ autorcito }}</div>
+                            <div class="h2 fw-bolder">{{ titulito }}</div>
+                            <p>...</p>
+                            <a class="stretched-link text-decoration-none" href="{% url 'crearPost' %}">
+                                Crear el primero
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-7"><div class="bg-featured-blog"><img src="{% static fotito %}" width="100%"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<section class="py-5">
+    <div class="container px-5">
+        <p style="text-align:center;"><b>{{ mensaje }}</b></p>
+        <h1 class="fw-bolder fs-5 mb-4">Posteo mas reciente</h1>
+        <div class="card border-0 shadow rounded-3 overflow-hidden">
+            <div class="card-body p-0">
+                <div class="row gx-0">
+                    <div class="col-lg-6 col-xl-5 py-lg-5">
+                        <div class="p-4 p-md-5">
+                            <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{ autorcito }}</div>
+                            <div class="h2 fw-bolder">{{ titulito }}</div>
+                            <p>...</p>
+                            <a class="stretched-link text-decoration-none" href="{% url 'verPost' idecito %}">
+                                Leer mas
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-7"><div class="bg-featured-blog"><img src="{{ fotito }}" width="100%"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+<section class="py-5 bg-light">
+    <div class="container px-5">
+        <div class="row gx-5">
+            <div class="col-xl-8">
+                <h2 class="fw-bolder fs-5 mb-4">Noticias</h2>
+                <!-- News item-->
+                <div class="mb-4">
+                    <div class="small text-muted">Deportes</div>
+                    <a class="link-dark" href="https://www.espn.com.ar/"><h3>Mantenete actualizado sobre lo que se viene en el torneo local</h3></a>
+                </div>
+                <!-- News item-->
+                <div class="mb-5">
+                    <div class="small text-muted">Economia</div>
+                    <a class="link-dark" href="https://www.cronista.com/"><h3>Dolar, reservas y mas...</h3></a>
+                </div>
+                <!-- News item-->
+                <div class="mb-5">
+                    <div class="small text-muted">Resultados de hoy</div>
+                    <a class="link-dark" href="https://www.jugandoonline.com.ar/rHome.aspx"><h3>Todos los resultados de las loterias</h3></a>
+                </div>
+                <div class="text-end mb-5 mb-xl-0">
+                    <a class="text-decoration-none" href="#!">
+                        
+                    </a>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="card border-0 h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex h-100 align-items-center justify-content-center">
+                            <div class="text-center">
+                                <div class="h6 fw-bolder">Contacto</div>
+                                <p class="text-muted mb-4">
+                                    Por servicios para empresas, consultenos en
+                                    <br />
+                                    <a href="#!">Bloggo@domain.com</a>
+                                </p>
+                                <div class="h6 fw-bolder">Siguenos!</div>
+                                <a class="fs-5 px-2 link-dark" href="https://twitter.com/" target="_blank" rel="noopener noreferrer"><i class="bi-twitter"></i></a>
+                                <a class="fs-5 px-2 link-dark" href="https://facebook.com/" target="_blank" rel="noopener noreferrer"><i class="bi-facebook"></i></a>
+                                <a class="fs-5 px-2 link-dark" href="https://linkedin.com/" target="_blank" rel="noopener noreferrer"><i class="bi-linkedin"></i></a>
+                                <a class="fs-5 px-2 link-dark" href="https://youtube.com/" target="_blank" rel="noopener noreferrer"><i class="bi-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog preview section-->
+<section class="py-5">
+    <div class="container px-5 my-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6">
+                <div class="text-center">
+                    <h2 class="fw-bolder">Unete a Bloggo!</h2>
+                    <p class="lead fw-normal text-muted mb-5">Podes crear y buscar post sobre lo que mas te guste, de una manera simple y directa.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row gx-5">
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100 shadow border-0">
+                    {% if r1postin == "" %}
+                    <img class="card-img-top" src="{% static r1foto %}" height="100%" alt="..." />
+                    {% else %}
+                    <img class="card-img-top" src="{{ r1foto }}" height="100%" alt="..." />
+                    {% endif %}
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{ r1autor }}</div>
+                        {% if r1postin == "" %}
+                        <a class="text-decoration-none link-dark stretched-link" href="{% url 'crearPost' %}"><h5 class="card-title mb-3">{{ r1titulo }}</h5></a>
+                        {% else %}
+                        <a class="text-decoration-none link-dark stretched-link" href="{% url 'verPost' id=r1postin %}"><h5 class="card-title mb-3">{{ r1titulo }}</h5></a>
+                        {% endif %}
+                        <p class="card-text mb-0">...</p>
+                    </div>
+                    <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                        <div class="d-flex align-items-end justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <div class="small">
+                                    <div class="text-muted">{{ r1fechin }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100 shadow border-0">
+                    {% if r2postin == "" %}
+                    <img class="card-img-top" src="{% static r2foto %}" height="100%" alt="..." />
+                    {% else %}
+                    <img class="card-img-top" src="{{ r2foto }}" height="100%" alt="..." />
+                    {% endif %}
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{ r2autor }}</div>
+                        {% if r2postin == "" %}
+                        <a class="text-decoration-none link-dark stretched-link" href="{% url 'crearPost' %}"><h5 class="card-title mb-3">{{ r2titulo }}</h5></a>
+                        {% else %}
+                        <a class="text-decoration-none link-dark stretched-link" href="{% url 'verPost' id=r2postin %}"><h5 class="card-title mb-3">{{ r2titulo }}</h5></a>
+                        {% endif %}
+                        <p class="card-text mb-0">...</p>
+                    </div>
+                    <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                        <div class="d-flex align-items-end justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <div class="small">
+                                    <div class="text-muted">{{ r2fechin }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100 shadow border-0">
+                    {% if r3postin == "" %}
+                    <img class="card-img-top" src="{% static r3foto %}" height="100%" alt="..." />
+                    {% else %}
+                    <img class="card-img-top" src="{{ r3foto }}" height="100%" alt="..." />
+                    {% endif %}
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{ r3autor }}</div>
+                        {% if r3postin == "" %}
+                        <a class="text-decoration-none link-dark stretched-link" href="{% url 'crearPost' %}"><h5 class="card-title mb-3">{{ r3titulo }}</h5></a>
+                        {% else %}
+                        <a class="text-decoration-none link-dark stretched-link" href="{% url 'verPost' id=r3postin %}"><h5 class="card-title mb-3">{{ r3titulo }}</h5></a>
+                        {% endif %}
+                        <p class="card-text mb-0">...</p>
+                    </div>
+                    <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                        <div class="d-flex align-items-end justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <div class="small">
+                                    <div class="text-muted">{{ r3fechin }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</main>
+{% endblock %}
+{% block algomas %}
+
+{% endblock %}

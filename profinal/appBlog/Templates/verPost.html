@@ -1,0 +1,38 @@
+{% extends "..\Templates\master.html" %}
+
+{% load static %}
+
+{% block tituloLeft %}
+<a class="navbar-brand" href="{% url 'index' %}" title="Home">Volver a la portada</a>
+
+{% endblock %}
+
+{% block contenido %}
+<section class="py-5">
+    <div class="container px-5">
+        <h1><center><class="fw-bolder fs-5 mb-4">{{ titulo }}</class=></center></h1>
+        <br></br>
+        <div class="card border-0 shadow rounded-3 overflow-hidden">
+            <div class="card-body p-0">
+                        <div class="p-4 p-md-5">
+                            <div class="h2 fw-bolder">{{ subtitulo }}</div>
+                            <div>{{ contenido|safe }}</div>
+                        </div>
+                    </div>
+                    {% if modificadoEl != creado_el %}
+                <p class="badge bg-primary bg-gradient rounded-pill mb-2">Creado por {{ autor }}--{{ creado_el }}--<span style="color: #A1FF6F">Editado el: {{ modificadoEl }}</span></p>
+                {% else %}
+                <p class="badge bg-primary bg-gradient rounded-pill mb-2">Creado por {{ autor }}--{{ creado_el }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block algomas %}
+<center><a class="btn btn-dark"  href="{% url 'index' %}"  title="Ir">Volver al Home</a></center>
+<br></br>
+<br></br>
+<br></br>
+{% endblock %}
